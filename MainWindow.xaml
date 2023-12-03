@@ -1,0 +1,39 @@
+﻿<Window x:Class="Project_Lichtkrant.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project_Lichtkrant"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+
+        <GroupBox>
+            <StackPanel>
+                <Label Content="Kies je compoort"/>
+                <ComboBox Name="compoorten" Margin="0.5"/>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox>
+            <StackPanel>
+                <Label Content="Welke tekst zou u willen projecteren?"/>
+                <TextBox x:Name="tbxTekst" Margin="0.5"></TextBox>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox>
+            <StackPanel>
+                <Label Content="Snelheid"/>
+                <GroupBox>
+                    <StackPanel>
+                        <CheckBox Content="Snel" Checked="checkSnel_Checked" Name="checkSnel"/>
+                        <CheckBox Content="Normaal" Checked="checkNormaal_Checked" Name="checkNormaal"/>
+                        <CheckBox Content="Traag" Checked="checkTraag_Checked" Name="checkTraag"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </GroupBox>
+
+    </StackPanel>
+</Window>
