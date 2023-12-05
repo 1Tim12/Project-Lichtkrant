@@ -22,9 +22,15 @@ namespace Project_Lichtkrant
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private Checkboxes checkboxes;
+
         SerialPort _serialPort;
         const int NUMBER_OF_DMX_BYTES = 513;
         byte[] _data;
+
+        int Snelheid = 0;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -33,33 +39,89 @@ namespace Project_Lichtkrant
             foreach (string s in SerialPort.GetPortNames())
                 compoorten.Items.Add(s);
 
+            checkboxes = new Checkboxes();
+
+            _serialPort = new SerialPort();
         }
 
         private void checkTraag_Checked(object sender, RoutedEventArgs e)
         {
-            
-        }
+            if (checkboxes.Speed1 == true)
+            {
+                Snelheid = 1;
 
+                checkNormaal.IsChecked = false;
+                checkNormaal.IsChecked = false;
+            }
+        }
         private void checkNormaal_Checked(object sender, RoutedEventArgs e)
         {
-            
+            if (checkboxes.Speed2 == true)
+            {
+                Snelheid = 2;
+
+                checkSnel.IsChecked = false;
+                checkTraag.IsChecked = false;
+            }
         }
 
         private void checkSnel_Checked(object sender, RoutedEventArgs e)
         {
-            
+            if (checkboxes.Speed3 == true)
+            {
+                Snelheid = 3;
+
+                checkNormaal.IsChecked = false;
+                checkTraag.IsChecked = false;
+            }
+        }
+
+        private void compoorten_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_serialPort != null)
+            {
+                if (_serialPort.IsOpen)
+                    _serialPort.Close();
+
+                if (compoorten.SelectedItem.ToString() != "None")
+                {
+                    _serialPort.PortName = compoorten.SelectedItem.ToString();
+                    _serialPort.Open();
+
+                    tbxTekst.IsEnabled = true;
+                    checkTraag.IsEnabled = true;
+                    checkNormaal.IsEnabled = true;
+                    checkSnel.IsEnabled = true;
+                }
+                else
+                {
+                    tbxTekst.IsEnabled = false;
+                    checkTraag.IsEnabled = false;
+                    checkNormaal.IsEnabled = false;
+                    checkSnel.IsEnabled = false;
+
+                    MessageBox.Show("Kies een compoort!");
+                }
+            }
         }
 
         private void SendData(byte[] data, SerialPort serialPort)
         {
-            
-
             
         }
 
         private void _SendData(object? sender, EventArgs e)
         {
             
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if ((_serialPort != null) && _serialPort.IsOpen)
+            {
+                _serialPort.Write(new byte[] { 0 }, 0, 1);
+                _serialPort.Dispose();
+            }
         }
     }
 }

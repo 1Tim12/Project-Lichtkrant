@@ -5,20 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project_Lichtkrant"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        Closing="Window_Closing">
     <StackPanel>
 
         <GroupBox>
             <StackPanel>
                 <Label Content="Kies je compoort"/>
-                <ComboBox Name="compoorten" Margin="0.5"/>
+                <ComboBox Name="compoorten" Margin="0.5" SelectionChanged="compoorten_SelectionChanged"/>
             </StackPanel>
         </GroupBox>
 
         <GroupBox>
             <StackPanel>
                 <Label Content="Welke tekst zou u willen projecteren?"/>
-                <TextBox x:Name="tbxTekst" Margin="0.5"></TextBox>
+                <TextBox x:Name="tbxTekst" Margin="0.5" IsEnabled="False"></TextBox>
             </StackPanel>
         </GroupBox>
 
@@ -26,10 +27,10 @@
             <StackPanel>
                 <Label Content="Snelheid"/>
                 <GroupBox>
-                    <StackPanel>
-                        <CheckBox Content="Snel" Checked="checkSnel_Checked" Name="checkSnel"/>
-                        <CheckBox Content="Normaal" Checked="checkNormaal_Checked" Name="checkNormaal"/>
-                        <CheckBox Content="Traag" Checked="checkTraag_Checked" Name="checkTraag"/>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <CheckBox Content="Snel" Checked="checkSnel_Checked" Name="checkSnel" Margin="5" IsEnabled="False"/>
+                        <CheckBox Content="Normaal" Checked="checkNormaal_Checked" Name="checkNormaal" Margin="5" IsEnabled="False"/>
+                        <CheckBox Content="Traag" Checked="checkTraag_Checked" Name="checkTraag" Margin="5" IsEnabled="False"/>
                     </StackPanel>
                 </GroupBox>
             </StackPanel>
