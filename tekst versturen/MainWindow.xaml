@@ -1,0 +1,28 @@
+﻿<Window x:Class="tekst_versturen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:tekst_versturen"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+
+        <GroupBox>
+            <StackPanel>
+                <Label Content="Kies je com-poort"/>
+                <ComboBox Name="compoorten" Margin="0.5" SelectionChanged="compoorten_SelectionChanged"/>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox>
+            <StackPanel>
+                <Label Content="Welke tekst zou u willen projecteren?"/>
+                <TextBox x:Name="tbxTekst" Margin="0.5" IsEnabled="False"></TextBox>
+            </StackPanel>
+        </GroupBox>
+
+        <Button Content="Verstuur Tekst" Click="btnVerstuurTekst_Click" Margin="10"/>
+
+    </StackPanel>
+</Window>

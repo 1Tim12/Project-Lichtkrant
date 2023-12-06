@@ -49,9 +49,6 @@ namespace Project_Lichtkrant
             if (checkboxes.Speed1 == true)
             {
                 Snelheid = 1;
-
-                checkNormaal.IsChecked = false;
-                checkNormaal.IsChecked = false;
             }
         }
         private void checkNormaal_Checked(object sender, RoutedEventArgs e)
@@ -59,9 +56,6 @@ namespace Project_Lichtkrant
             if (checkboxes.Speed2 == true)
             {
                 Snelheid = 2;
-
-                checkSnel.IsChecked = false;
-                checkTraag.IsChecked = false;
             }
         }
 
@@ -70,9 +64,6 @@ namespace Project_Lichtkrant
             if (checkboxes.Speed3 == true)
             {
                 Snelheid = 3;
-
-                checkNormaal.IsChecked = false;
-                checkTraag.IsChecked = false;
             }
         }
 
@@ -81,8 +72,9 @@ namespace Project_Lichtkrant
             if (_serialPort != null)
             {
                 if (_serialPort.IsOpen)
+                {
                     _serialPort.Close();
-
+                }
                 if (compoorten.SelectedItem.ToString() != "None")
                 {
                     _serialPort.PortName = compoorten.SelectedItem.ToString();
@@ -100,19 +92,24 @@ namespace Project_Lichtkrant
                     checkNormaal.IsEnabled = false;
                     checkSnel.IsEnabled = false;
 
-                    MessageBox.Show("Kies een compoort!");
+                    MessageBox.Show($"Kies een compoort!", "Fout",MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         }
 
         private void SendData(byte[] data, SerialPort serialPort)
         {
-            
-        }
-
-        private void _SendData(object? sender, EventArgs e)
-        {
-            
+            try
+            {
+                if (serialPort != null && serialPort.IsOpen)
+                { 
+                    serialPort.Write(data, 0, data.Length);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Fout bij verzenden van de data: {ex.Message}", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -126,7 +123,11 @@ namespace Project_Lichtkrant
 
         private void tbxTekst_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+            string tekst = tbxTekst.Text;
+
+           byte _tekst[] = Convert.ToByte(tekst);
+            //SendData(Encoding.ASCII.GetBytes(tekst), _serialPort);
+            SendData(_tekst, _serialPort);
         }
     }
 }
