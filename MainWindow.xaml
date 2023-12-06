@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Project_Lichtkrant"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-        Closing="Window_Closing">
+        Closing="Window_Closing"
+        ResizeMode="NoResize">
     <StackPanel>
 
         <GroupBox>
@@ -19,7 +20,7 @@
         <GroupBox>
             <StackPanel>
                 <Label Content="Welke tekst zou u willen projecteren?"/>
-                <TextBox x:Name="tbxTekst" Margin="0.5" IsEnabled="False"></TextBox>
+                <TextBox x:Name="tbxTekst" Margin="0.5" IsEnabled="False" TextChanged="tbxTekst_TextChanged"></TextBox>
             </StackPanel>
         </GroupBox>
 
@@ -28,9 +29,9 @@
                 <Label Content="Snelheid"/>
                 <GroupBox>
                     <StackPanel Orientation="Horizontal" Margin="5">
-                        <CheckBox Content="Snel" Checked="checkSnel_Checked" Name="checkSnel" Margin="5" IsEnabled="False"/>
-                        <CheckBox Content="Normaal" Checked="checkNormaal_Checked" Name="checkNormaal" Margin="5" IsEnabled="False"/>
-                        <CheckBox Content="Traag" Checked="checkTraag_Checked" Name="checkTraag" Margin="5" IsEnabled="False"/>
+                        <RadioButton Content="Snel" Checked="checkSnel_Checked" Name="checkSnel" Margin="5" IsEnabled="False"/>
+                        <RadioButton Content="Normaal" Checked="checkNormaal_Checked" Name="checkNormaal" Margin="5" IsEnabled="False"/>
+                        <RadioButton Content="Traag" Checked="checkTraag_Checked" Name="checkTraag" Margin="5" IsEnabled="False"/>
                     </StackPanel>
                 </GroupBox>
             </StackPanel>

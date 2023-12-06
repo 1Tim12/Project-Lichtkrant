@@ -123,5 +123,10 @@ namespace Project_Lichtkrant
                 _serialPort.Dispose();
             }
         }
+
+        private void tbxTekst_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+        }
     }
 }
