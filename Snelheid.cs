@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using Project_Lichtkrant;
 
 namespace Project_Lichtkrant
 {
-    public class Checkboxes
+    public class Snelheid
     {
         public bool Speed1 { get; set; }
         public bool Speed2 { get; set; }
