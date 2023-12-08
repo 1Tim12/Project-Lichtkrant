@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -124,9 +125,34 @@ namespace Project_Lichtkrant
             }
         }
 
-        private void tbxTekst_TextChanged(object sender, TextChangedEventArgs e)
+        private void Send_Click(object sender, RoutedEventArgs e)
         {
-            
+
+            if (checkboxes.Speed1 == true)
+            {
+                _serialPort.Write("<ID01><PA><FS><FZ>" + " " + tbxTekst.Text + " " + Convert.ToChar(13) + Convert.ToChar(10));
+                _serialPort.Write("<ID01><RPA>" + Convert.ToChar(13) + Convert.ToChar(10));
+            }
+
+            else if (Snelheid == 2)
+            {
+                _serialPort.Write("<ID01><PA><FS><FY>" + " " + tbxTekst.Text + " " + Convert.ToChar(13) + Convert.ToChar(10));
+                _serialPort.Write("<ID01><RPA>" + Convert.ToChar(13) + Convert.ToChar(10));
+            }
+
+            else if (Snelheid == 3)
+            {
+                _serialPort.Write("<ID01><PA><FZ><FX>" + " " + tbxTekst.Text + " " + Convert.ToChar(13) + Convert.ToChar(10));
+                _serialPort.Write("<ID01><RPA>" + Convert.ToChar(13) + Convert.ToChar(10));
+            }
+
+            else
+            {
+                MessageBox.Show("Er is een probleem");
+            }
+
+            //_serialPort.Write("<ID01><PA><FS><FX>" + " " + tbxTekst.Text + " " + Convert.ToChar(13) + Convert.ToChar(10));
+            //_serialPort.Write("<ID01><RPA>" + Convert.ToChar(13) + Convert.ToChar(10));
         }
     }
 }

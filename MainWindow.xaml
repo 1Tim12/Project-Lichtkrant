@@ -20,7 +20,7 @@
         <GroupBox>
             <StackPanel>
                 <Label Content="Welke tekst zou u willen projecteren?"/>
-                <TextBox x:Name="tbxTekst" Margin="0.5" IsEnabled="False" TextChanged="tbxTekst_TextChanged"></TextBox>
+                <TextBox x:Name="tbxTekst" Margin="0.5" IsEnabled="False"></TextBox>
             </StackPanel>
         </GroupBox>
 
@@ -36,6 +36,8 @@
                 </GroupBox>
             </StackPanel>
         </GroupBox>
+
+        <Button x:Name="Send" Content="Send" Click="Send_Click"/>
 
     </StackPanel>
 </Window>
